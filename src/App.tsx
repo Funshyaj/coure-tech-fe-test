@@ -8,6 +8,7 @@ import PrimaryButton from "./components/PrimaryButtont";
 import Header from "./components/Header";
 import EditTaskForm from "./components/EdtiTaskForm ";
 import useLocalStorageState from "use-local-storage-state";
+import { BiCheck, BiPencil, BiTrash } from "react-icons/bi";
 
 const App = () => {
   // const [tasks, setTasks] = useState<Task[]>(demoTasks || []);
@@ -67,47 +68,54 @@ const App = () => {
       </Header>
 
       <div className="mt-52 md:mt-28">
-        {filteredTasks.map((task) => (
-          <div
-            key={task.id}
-            className={`${
-              task.status === "Completed"
-                ? "bg-green-100"
-                : task.status === "In Progress"
-                ? "bg-orange-100"
-                : "bg-white"
-            } shadow-md rounded-lg p-4 mb-4 border border-gray-200`}
-          >
-            <h2 className="text-lg font-semibold">{task.title}</h2>
-            <p>{task.description}</p>
-            <p className="text-sm text-gray-500">Due: {task.dueDate}</p>
-            <p>Priority: {task.priority}</p>
-            <p>Status: {task.status}</p>
-            <div className="mt-2 space-x-3">
-              <button
-                className="bg-blue-500 rounded py-1 px-2 text-white"
-                onClick={() => {
-                  setTask(task);
-                  toggleEditTaskModal();
-                }}
-              >
-                Edit
-              </button>
-              <button
-                className="bg-green-500 rounded py-1 px-2 text-white"
-                onClick={() => updateTask({ ...task, status: "Completed" })}
-              >
-                Complete
-              </button>
-              <button
-                className="bg-red-500 rounded py-1 px-2 text-white"
-                onClick={() => deleteTask(task.id)}
-              >
-                Delete
-              </button>
+        {filteredTasks.length ? (
+          filteredTasks.map((task) => (
+            <div
+              key={task.id}
+              className={`${
+                task.status === "Completed"
+                  ? "bg-green-100"
+                  : task.status === "In Progress"
+                  ? "bg-orange-100"
+                  : "bg-white"
+              } shadow-md rounded-lg p-4 mb-4 border border-gray-200`}
+            >
+              <h2 className="text-lg font-semibold">{task.title}</h2>
+              <p>{task.description}</p>
+              <p className="text-sm text-gray-500">Due: {task.dueDate}</p>
+              <p>Priority: {task.priority}</p>
+              <p>Status: {task.status}</p>
+              <div className="mt-2 space-x-3">
+                <button
+                  className="bg-blue-500 rounded py-1 px-2 text-white"
+                  onClick={() => {
+                    setTask(task);
+                    toggleEditTaskModal();
+                  }}
+                >
+                  <BiPencil size={25} />
+                </button>
+                <button
+                  className="bg-green-500 rounded py-1 px-2 text-white"
+                  onClick={() => updateTask({ ...task, status: "Completed" })}
+                >
+                  <BiCheck size={25} />
+                </button>
+                <button
+                  className="bg-red-500 rounded p-1 text-white"
+                  onClick={() => deleteTask(task.id)}
+                >
+                  <BiTrash size={25} />
+                </button>
+              </div>
             </div>
+          ))
+        ) : (
+          <div className="space-y-3 text-center">
+            <h2 className="text-3xl font-bold"> No Tasks yet!</h2>
+            <p className="text-gray-500">Create tasks to get started</p>
           </div>
-        ))}
+        )}
       </div>
 
       {/* Add Task modal */}

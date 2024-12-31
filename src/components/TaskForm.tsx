@@ -7,7 +7,7 @@ interface Props {
 }
 const TaskForm = ({ addTask }: Props) => {
   const [form, setForm] = useState<Task>({
-    id: 2,
+    id: 0,
     title: "",
     description: "",
     dueDate: "",
@@ -20,7 +20,7 @@ const TaskForm = ({ addTask }: Props) => {
     addTask({ ...form, id: Date.now() });
     // Reset form
     setForm({
-      id: 2,
+      id: 0,
       title: "",
       description: "",
       dueDate: "",
@@ -52,12 +52,14 @@ const TaskForm = ({ addTask }: Props) => {
         />
         <input
           type="date"
+          title="Task Due Date"
           className="border p-2 w-full mb-2"
           value={form.dueDate}
           onChange={(e) => setForm({ ...form, dueDate: e.target.value })}
           required
         />
         <select
+          title="Priority"
           className="border p-2 w-full mb-2"
           value={form.priority}
           onChange={(e) => setForm({ ...form, priority: e.target.value })}
@@ -68,6 +70,7 @@ const TaskForm = ({ addTask }: Props) => {
           <option value="High">High</option>
         </select>
         <select
+          title="Status"
           className="border p-2 w-full mb-4"
           value={form.status}
           onChange={(e) => setForm({ ...form, status: e.target.value })}

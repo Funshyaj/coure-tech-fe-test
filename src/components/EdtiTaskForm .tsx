@@ -15,6 +15,7 @@ const EditTaskForm = ({ editTask, task }: Props) => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     editTask(form);
+    setFormNotUpdated(true);
   };
 
   return (

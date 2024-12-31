@@ -14,7 +14,7 @@ const ModalContainer = ({ toggleModal, children }: Props) => {
         onClick={(e) => e.stopPropagation()}
         className="z-[999] bg-white p-4 md:rounded-lg shadow-lg max-w-md w-full h-full md:h-[unset]"
       >
-        <div className="z-[999] relative pt-5 px-3 md:px-10">
+        <div className="z-[999] relative pt-5">
           <MdOutlineCancel
             onClick={toggleModal}
             size={35}
