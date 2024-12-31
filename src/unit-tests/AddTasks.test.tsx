@@ -11,10 +11,9 @@ describe("TaskForm Component", () => {
   });
 
   it("should call addTask with correct data when the form is submitted", () => {
-    const mockAddTask = jest.fn(); // Mock function to simulate the prop
+    const mockAddTask = jest.fn(); // Mocking the function to simulate the prop
     render(<TaskForm addTask={mockAddTask} />);
 
-    // Fill the form fields
     fireEvent.change(screen.getByPlaceholderText("Task Title"), {
       target: { value: "Test Task" },
     });

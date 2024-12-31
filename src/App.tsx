@@ -1,19 +1,17 @@
 import { useState } from "react";
 import { Task } from "./types";
-import { demoTasks } from "./data/demoTask";
 import TaskForm from "./components/TaskForm";
 import FilterBar from "./components/FilterBar";
 import ModalContainer from "./components/ModalContainer";
 import PrimaryButton from "./components/PrimaryButtont";
 import Header from "./components/Header";
-import EditTaskForm from "./components/EdtiTaskForm ";
+import EditTaskForm from "./components/EdtiTaskForm";
 import useLocalStorageState from "use-local-storage-state";
 import { BiCheck, BiPencil, BiTrash } from "react-icons/bi";
 
 const App = () => {
-  // const [tasks, setTasks] = useState<Task[]>(demoTasks || []);
   const [tasks, setTasks] = useLocalStorageState<Task[]>("tasks", {
-    defaultValue: demoTasks,
+    defaultValue: [],
   });
   const [filters, setFilters] = useState({ priority: "", status: "" });
   const [addTaskModalOpen, setAddTaskModalOpen] = useState(false);
@@ -27,8 +25,11 @@ const App = () => {
     status: "Pending",
   });
 
+  // Modal toggles
   const toggleAddTaskMOdal = () => setAddTaskModalOpen(!addTaskModalOpen);
   const toggleEditTaskModal = () => setEditTaskModalOpen(!editTaskModalOpen);
+
+  // Function to Create new task
   const addTask = (task: Task) => setTasks([...tasks, task]);
 
   // funtion to edit a create task
@@ -40,6 +41,8 @@ const App = () => {
       );
     });
   };
+
+  // Function to updated Task to Completed
   const updateTask = (updatedTask: Task) => {
     setTasks((prev) => {
       return prev.map((task) =>
@@ -48,6 +51,7 @@ const App = () => {
     });
   };
 
+  // Function to delete task
   const deleteTask = (taskId: number) => {
     setTasks(tasks.filter((task) => task.id !== taskId));
   };
