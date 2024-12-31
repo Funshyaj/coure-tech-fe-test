@@ -46,12 +46,14 @@ const EditTaskForm = ({ editTask, task }: Props) => {
         />
         <input
           type="date"
+          title="Task Due Date"
           className="border p-2 w-full mb-2"
           value={form.dueDate}
           onChange={(e) => setForm({ ...form, dueDate: e.target.value })}
           required
         />
         <select
+          title="Priority"
           className="border p-2 w-full mb-2"
           value={form.priority}
           onChange={(e) => setForm({ ...form, priority: e.target.value })}
@@ -62,6 +64,7 @@ const EditTaskForm = ({ editTask, task }: Props) => {
           <option value="High">High</option>
         </select>
         <select
+          title="Status"
           className="border p-2 w-full mb-4"
           value={form.status}
           onChange={(e) => setForm({ ...form, status: e.target.value })}
@@ -72,7 +75,7 @@ const EditTaskForm = ({ editTask, task }: Props) => {
         </select>
         <PrimaryButton
           formId="editForm"
-          label="Edit Task"
+          label="Edit"
           disabled={formNotUpdated}
         />
       </form>
