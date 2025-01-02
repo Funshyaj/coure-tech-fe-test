@@ -8,10 +8,11 @@ import Header from "./components/Header";
 import EditTaskForm from "./components/EdtiTaskForm";
 import useLocalStorageState from "use-local-storage-state";
 import { BiCheck, BiPencil, BiTrash } from "react-icons/bi";
+import { demoTasks } from "./data/demoTask";
 
 const App = () => {
   const [tasks, setTasks] = useLocalStorageState<Task[]>("tasks", {
-    defaultValue: [],
+    defaultValue: demoTasks,
   });
   const [filters, setFilters] = useState({ priority: "", status: "" });
   const [addTaskModalOpen, setAddTaskModalOpen] = useState(false);
